@@ -1,3 +1,14 @@
-<p>
-  employee-list works!
-</p>
+<table class="table table-sm table-hover">
+  <tr *ngFor = "let employee of employeeList">
+    <td>{{employee.name}}</td>
+    <td>{{employee.position}}</td>
+    <td>
+      <a class="btn">
+          <i class="fa fa-pencil-square-o" (click)="onEdit(employee)"></i>
+      </a>
+      <a class="btn">
+        <i class="fa fa-trash" (click)="onDelete(employee.$key)"></i>
+    </a>      
+    </td>
+  </tr>
+</table>

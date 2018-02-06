@@ -15,11 +15,14 @@ export class EmployeeComponent implements OnInit {
   constructor(private employeeService: EmployeeService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.employeeService.getData();
     this.resetForm();
   }
   onSubmit(employeeForm: NgForm)  {
-    this.employeeService.insertEmployee(employeeForm.value);
+    if (employeeForm.value.$key == null) {
+      this.employeeService.insertEmployee(employeeForm.value);
+    } else {
+      this.employeeService.updateEmployee(employeeForm.value);
+    }
     this.resetForm();
     this.toastrService.success('Submitted Successfully', 'Employee');
   }
